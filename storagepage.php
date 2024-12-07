@@ -357,7 +357,7 @@
 
             }
             const formData = new FormData();
-            const response = await fetch('deleteID.php', {
+            const response = await fetch('deleteId.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
