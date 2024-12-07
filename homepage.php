@@ -92,7 +92,7 @@
     </div>
 
     <div class="grid-item">
-      <a href="storage.php"><button><i class="fa-solid fa-id-card"></i><br>Digital ID</button></a>
+      <a href="storagepage.php"><button><i class="fa-solid fa-id-card"></i><br>Digital ID</button></a>
     </div>
 
     <div class="grid-item">
