@@ -38,7 +38,7 @@
             $stmt->bindParam(':url_data', $url);
             $stmt->execute();
 
-            $default_content = 'localhost/dan/id.php'; //change pagonrender na
+            $default_content = 'https://websys.onrender.com/id.php'; //change pagonrender na
             $qr_Code = trim($default_content . "?key=" . $url);
             // $qr_Code->setSize(300);
             // // Generate and save the QR code image
