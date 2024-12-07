@@ -6,7 +6,7 @@
 		exit;
 	}
 	if (!empty($_SESSION['user_dp'])) {
-		$dp = base64_encode(($_SESSION['user_dp']));
+		$dp = $_SESSION['user_dp'];
 	} else {
 		$imagePath = file_get_contents('images/user.jpg');
 		$dp = base64_encode($imagePath);
@@ -99,10 +99,10 @@
                             <button class="remove-photo" onclick="removeImage();">REMOVE PHOTO</button>
 							<?php endif; ?>
                         </div>  
-				<button type="submit" id="save-changes">SAVE CHANGES</button>
+						<form id="settingsForm">
+						<button type="submit" id="save-changes">SAVE CHANGES</button>
                 </div>
 
-						<form id="settingsForm">
 						<div class="inputs">
 									<label for="information">PERSONAL INFORMATION :</label>
 									<p>Ensure your information is current. Edit your email, username, contact number, and password securely here.</p>
@@ -194,6 +194,7 @@
 								const username = usernameInput.value.trim();
 								const email = emailInput.value.trim();
 								const password = passwordInput.value.trim();
+								
 								const confirmPassword = confirmPasswordInput.value.trim();
 
 								// Add fields only if they are changed
@@ -204,7 +205,14 @@
 									formData.append('email', email);
 								}
 								if (password && password === confirmPassword) {
+									formData.append('confirm_password', confirmPassword);
 									formData.append('password', password);
+								} else if (password && confirmPassword == '') {
+									alert('Empty confirm Password')
+									return
+								} else if (password) {
+									alert('Wrong confirm Password!')
+									return
 								}
 
 								// Check if at least one field was added
@@ -224,7 +232,7 @@
 									alert('Changes saved successfully!');
 									location.reload(); // Reload page to update session data
 								} else {
-									alert('Failed to save changes.');
+									alert(result);
 								}
 							});
 							
@@ -401,6 +409,7 @@ async function deleteAcc() {
         console.log("Account removal canceled"); // Optional log if canceled
     }
 }
+
 
 
 
