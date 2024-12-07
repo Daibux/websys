@@ -13,13 +13,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt = $pdo->prepare("SELECT * FROM usertable WHERE email = ?");
     $stmt->execute([$email]);
     $user = $stmt->fetch();
-
     // If user exists and password is correct
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['username'] = $user['username'];
         $_SESSION['email'] = $user['email'];
         $_SESSION['userid'] = $user['userid'];
-        $_SESSION['user_dp'] = $user['user_dp'];
+        if (!empty($user['user_dp'])){
+            $_SESSION['user_dp'] =  base64_encode(stream_get_contents($user['user_dp']));
+        }
         $_SESSION['fname'] = $user['fname'];
         $_SESSION['lname'] = $user['lname'];
         $_SESSION['phone'] = $user['phone'];

@@ -6,7 +6,8 @@
 		exit;
 	}
   if (!empty($_SESSION['user_dp'])) {
-      $dp = base64_encode(($_SESSION['user_dp']));
+	$dp = $_SESSION['user_dp'];
+
   } else {
       $imagePath = file_get_contents('images/user.jpg');
       $dp = base64_encode($imagePath);
@@ -338,7 +339,7 @@
 		
 		if (response.ok) {
 				alert('You have been logged out.');
-				window.location.href = '/homepage/login.html'; // Redirect to the login page
+				window.location.href = '/homepage/login.php'; // Redirect to the login page
 			} else {
 				alert('Logout failed. Please try again.');
 			}

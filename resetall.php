@@ -6,12 +6,14 @@ try {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $updates = []; // Array to store update fields
         $params = [];  // Array to store bound values
+        $activityLog = []; // Array to store activities for the audit trail
 
         // Validate and update username
         if (!empty($_POST['username'])) {
             $updates[] = "username = :username";
             $params[':username'] = $_POST['username'];
             $_SESSION['username'] = $_POST['username'];
+            $activityLog[] = "Username updated to {$_POST['username']}";
         }
 
         // Validate and update email
@@ -19,6 +21,7 @@ try {
             $updates[] = "email = :email";
             $params[':email'] = $_POST['email'];
             $_SESSION['email'] = $_POST['email'];
+            $activityLog[] = "Email updated to {$_POST['email']}";
         }
 
         // Validate and update password
@@ -35,6 +38,7 @@ try {
 
             $updates[] = "password = :password";
             $params[':password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            $activityLog[] = "Password updated.";
         }
 
         // Execute the update query if there are fields to update
@@ -44,6 +48,15 @@ try {
 
             $stmt = $pdo->prepare($query);
             $stmt->execute($params);
+
+            // Log activities in the audit trail
+            foreach ($activityLog as $activity) {
+                $auditStmt = $pdo->prepare("INSERT INTO AuditTrail (UserID, Activity) VALUES (:userId, :activity)");
+                $auditStmt->bindParam(':userId', $_SESSION['userid'], PDO::PARAM_INT);
+                $auditStmt->bindParam(':activity', $activity, PDO::PARAM_STR);
+                $auditStmt->execute();
+            }
+
             echo 'success';
         } else {
             echo 'No changes to update.';

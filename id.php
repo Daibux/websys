@@ -19,7 +19,7 @@ try {
     $stmt->execute([':url_data' => $url]);
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($row) {
-        $frontId = base64_encode(stream_get_contents($row['front_data']));
+        $frontId = base64_encode(stream_get_contents( $row['front_data']));
         $backId = base64_encode(stream_get_contents($row['back_data']));
     } else {
         echo "Image not found.";

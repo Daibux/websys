@@ -22,10 +22,9 @@
             $dpData = file_get_contents($dp);
 
             // Insert into PostgreSQL
-            $sql = "INSERT INTO usertable (user_dp)
-            VALUES (:user_dp)"; 
-            $stmt = $pdo->prepare($sql);
+            $stmt = $pdo->prepare("UPDATE usertable SET user_dp = :user_dp WHERE userid = :userid");
             $stmt->bindParam( ':user_dp', $dpData, PDO::PARAM_LOB);
+            $stmt->bindParam(':userid', $_SESSION['userid']); 
             $stmt->execute();
 
             // Audit trail: Log the upload activity
@@ -36,7 +35,11 @@
             $stmt->bindParam(':userid', $_SESSION['userid']); 
             $stmt->bindParam(':activity', $activity);
             $stmt->execute();
-            $_SESSION['user_dp'] = $dpData;
-        echo 'Profile Picture Updated';
+
+            $stmt = $pdo->prepare("SELECT * FROM usertable WHERE userid = ?");
+            $stmt->execute([$_SESSION['userid']]);
+            $user = $stmt->fetch();
+            $_SESSION['user_dp'] = base64_encode(stream_get_contents($user['user_dp']));
+            echo 'Changed Image Succesfully';
     }
     ?>

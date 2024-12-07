@@ -6,7 +6,8 @@
 		exit;
 	}
   if (!empty($_SESSION['user_dp'])) {
-      $dp = base64_encode(($_SESSION['user_dp']));
+    $dp = $_SESSION['user_dp'];
+
   } else {
       $imagePath = file_get_contents('images/user.jpg');
       $dp = base64_encode($imagePath);

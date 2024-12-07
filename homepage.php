@@ -2,11 +2,12 @@
 	session_start();
 	if(!isset($_SESSION['username']))
 	{
-		header("Location: /homepage/login.php");
+		header("Location: login.php");
 		exit;
 	}
   if (!empty($_SESSION['user_dp'])) {
-      $dp = base64_encode(($_SESSION['user_dp']));
+    $dp = $_SESSION['user_dp'];
+
   } else {
       $imagePath = file_get_contents('images/user.jpg');
       $dp = base64_encode($imagePath);
@@ -96,7 +97,7 @@
     </div>
 
     <div class="grid-item">
-      <a href="#audittrail"><button><i class="fa-solid fa-clock-rotate-left"></i><br>Activities</button></a>
+      <a href="User-Overview.php"><button><i class="fa-solid fa-clock-rotate-left"></i><br>Activities</button></a>
     </div>
 
     <div class="grid-item">

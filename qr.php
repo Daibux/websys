@@ -9,7 +9,7 @@
             $id_number = $_POST['idNumber'];
             $id_type = $_POST['idType'];
 
-            //select then u check if it exists then echo error then exit(); u try pagwala i cr
+            //select then u check if it exists then echo error then exit()
             $stmt = $pdo->prepare('SELECT COUNT(*) FROM qr_datas WHERE id_type = :id_type and user_id = :user_id');
             $stmt->bindParam(':id_type', $id_type);
             $stmt->bindParam(':user_id', $_SESSION['userid']);
@@ -28,7 +28,7 @@
 
             // Insert into PostgreSQL
             $sql = "INSERT INTO id_images (id_number, id_type, front_data, back_data, url_data, user_id) 
-            VALUES (:id_number, :id_type, :front_data, :back_data, :url_data, :user_id)"; //need ng bagong table named id_images
+            VALUES (:id_number, :id_type, :front_data, :back_data, :url_data, :user_id)"; 
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':id_number', $id_number);
             $stmt->bindParam(':user_id', $_SESSION['userid']);
@@ -38,7 +38,7 @@
             $stmt->bindParam(':url_data', $url);
             $stmt->execute();
 
-            $default_content = 'https://websys.onrender.com/id.php'; //change pagonrender na
+            $default_content = 'localhost/dan/id.php'; //change pagonrender na
             $qr_Code = trim($default_content . "?key=" . $url);
             // $qr_Code->setSize(300);
             // // Generate and save the QR code image
