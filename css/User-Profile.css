@@ -256,9 +256,11 @@ nav .profile-pic {
 }
 #save-changes {
 	text-wrap: nowrap;
-	width: 60%;
+	width: 180px;
 	margin-top: auto;
 	margin-bottom: 20px;
+	margin-left: 60px;
+	
 }
 .profile-settings {
 	display: flex;
