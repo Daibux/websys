@@ -158,7 +158,7 @@
 		  			</div>
 				</div>
 			</div>
-			<img src="pic-landing-3.png" alt="Landing Image">
+			<img src="./images/pic-landing-3.png" alt="Landing Image">
 		</div>
 	</div>
 
