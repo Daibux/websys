@@ -46,21 +46,37 @@ function createCookie(name, value, days) {
 }
 </script>
 <?php
+
 require_once "database.php";
-    
-$token = $_COOKIE["token"]; //JS TO PHP VARIABLE
-if (!$token) {
+
+
+
+// Check if the 'token' cookie exists
+if (!isset($_COOKIE['token'])) {
     echo "No token found in cookies.";
     exit;
 }
+
+$token = $_COOKIE['token']; // Fetch the token from the cookie
+
+
+
 try {
+    // Fetch user information from the database
     $stmt = $pdo->prepare("SELECT * FROM usertable WHERE email = ?");
     $stmt->execute([$token]);
     $user = $stmt->fetch();
+
+    if ($user) {
+        echo "";
+    } else {
+        echo "No user found for the provided token.";
+    }
 } catch (PDOException $e) {
     echo "Database error: " . $e->getMessage();
 }
 ?>
+
 </html>
 <!DOCTYPE html>
 <html lang="en">
@@ -178,7 +194,7 @@ try {
 			document.getElementById('npass1').reportValidity();
         } else {
             alert('Password Changed! You can now login')
-            window.location.href = "/login.php"
+            window.location.href = "/login"
         }
     })
     var elements = document.getElementsByTagName("INPUT");
