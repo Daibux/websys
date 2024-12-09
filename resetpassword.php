@@ -194,7 +194,7 @@ try {
 			document.getElementById('npass1').reportValidity();
         } else {
             alert('Password Changed! You can now login')
-            window.location.href = "/login"
+            window.location.href = "/login.php"
         }
     })
     var elements = document.getElementsByTagName("INPUT");
