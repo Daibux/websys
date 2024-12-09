@@ -77,7 +77,7 @@ function sendResetEmail() {
     const email = document.getElementById("email").value
     const token = generateToken(email, 'goldberg');
     // Construct the password reset link
-    const resetLink = `localhost/homepage/resetpassword.php?token=${token}`;
+    const resetLink = `https://websys.onrender.com/resetpassword.php?token=${token}`;
     const formData = new FormData(document.getElementById("emailForm"));
     const response = await fetch('recovery.php', {
         method: 'POST',
