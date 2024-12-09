@@ -90,7 +90,7 @@
 				<p class="./imagesteam-info">Frontend development and implemented media <br>queries for responsive design in the QuID project.</p>
 			</div>
 			<div class="members">
-				<img src="./imagesdave.png" alt="dave">
+				<img src="./images/dave.png" alt="dave">
 				<h3>Dave Sula</h3>
 				<p>Frontend Programmer</p>
 				<p class="team-info">Frontend development and implemented media <br>queries for responsive design in the QuID project.</p>
