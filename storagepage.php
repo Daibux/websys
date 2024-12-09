@@ -244,7 +244,14 @@
             const response = await fetch('qr.php', {
               method: 'POST',
               body: formData
-            });
+             if (response.ok) {
+                  // Reset the form inputs
+                  idForm.reset();
+                  console.log('Form submitted and reset successfully.');
+              } else {
+                  console.error('Failed to submit the form.');
+              }
+              });
             qrData = await response.text();
             if (qrData == 'duplicate_id_type') {
               alert('Duplicate Id Type')
