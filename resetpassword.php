@@ -52,6 +52,7 @@ $token = $_COOKIE["token"]; //JS TO PHP VARIABLE
 if (!$token) {
     echo "No token found in cookies.";
     exit;
+}
 try {
     $stmt = $pdo->prepare("SELECT * FROM usertable WHERE email = ?");
     $stmt->execute([$token]);
