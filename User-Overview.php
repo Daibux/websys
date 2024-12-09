@@ -224,7 +224,7 @@
 		
 		if (response.ok) {
 				alert('You have been logged out.');
-				window.location.href = '/homepage/login.php'; // Redirect to the login page
+				window.location.href = '/login.php'; // Redirect to the login page
 			} else {
 				alert('Logout failed. Please try again.');
 			}
