@@ -49,6 +49,9 @@ function createCookie(name, value, days) {
 require_once "database.php";
     
 $token = $_COOKIE["token"]; //JS TO PHP VARIABLE
+if (!$token) {
+    echo "No token found in cookies.";
+    exit;
 try {
     $stmt = $pdo->prepare("SELECT * FROM usertable WHERE email = ?");
     $stmt->execute([$token]);
@@ -57,22 +60,6 @@ try {
     echo "Database error: " . $e->getMessage();
 }
 ?>
-<?php if ($user): ?>
-    <form action="">
-    </form>
-    <div class="display-container">
-
-        <div class="detail">
-            <span class="label">Email: <?php echo htmlspecialchars($user['email']); ?></span>
-        </div>
-        <div class="detail">
-            <span class="label">old password: <?php echo htmlspecialchars($user['password']); ?></span>
-        </div>
-    </div>
-<?php else: ?>
-    <p>No data found for the provided key.</p>
-<?php endif; ?>
-
 </html>
 <!DOCTYPE html>
 <html lang="en">
