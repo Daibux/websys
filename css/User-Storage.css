@@ -424,10 +424,10 @@
 
     nav {
         display: flex;
-        justify-content: flex-end;  /* Align navbar items to the right */
+        justify-content: flex-end;  
         align-items: center;
         width: 105%;
-        padding: 0 20px; /* Add padding to the left for spacing */
+        padding: 0 20px; 
     }
 
     footer {
@@ -441,7 +441,7 @@
         text-decoration: none;
         line-height: 50px;
         padding: 0 8px;
-        margin-left: 5px;  /* Adjust space between links */
+        margin-left: 5px;  
         display: inline-block;
         text-align: center;
         transition: color 0.3s ease;
@@ -452,7 +452,7 @@
     }
 
     .dropdown-content {
-        width: 150px; /* Adjust dropdown width */
+        width: 150px; 
     }
 
     .profile-pic {
@@ -461,27 +461,27 @@
     }
 
     .dropdown {
-        margin-right: 15px; /* Adjust margin for dropdown */
+        margin-right: 15px; 
     }
 
     .img-area {
-        width: 90%; /* Adjust image area to fit screen */
+        width: 90%; 
         margin: 10px auto;
     }
 
     .form-section, .display-section {
-        padding: 1rem; /* Adjust padding inside the sections */
+        padding: 1rem; 
         width: 95%;
         margin: 0 auto;
     }
 
-    /* Stack form-section and display-section vertically */
+    
     main {
-        flex-direction: column;  /* Stack sections vertically */
-        gap: 20px;  /* Added space between sections */
+        flex-direction: column;  
+        gap: 20px;  
     }
 
-    /* Adjust the sections for smaller screens */
+    
     .form-section, .display-section {
         flex: 1;
         background-color: #ffffff;
